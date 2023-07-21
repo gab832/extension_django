@@ -1,0 +1,11 @@
+*.pyc
+htmlcov
+.coverage
+coverage.xml
+.fastapi_django_dev.env
+node_modules
+ui/tests/coverage
+pg_data
+.devcontainer
+dist
+*django/static/django/admin*

@@ -1,0 +1,8 @@
+{
+  "name": "fastapi django",
+  "description": "Test django orm with eaas",
+  "version": "0.1.0",
+  "audience": ["distributor", "reseller", "vendor"],
+  "readme_url": "https://example.com/README.md",
+  "changelog_url": "https://example.com/CHANGELOG.md"
+}

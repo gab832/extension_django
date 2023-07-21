@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  fastapi_django_dev:
+    container_name: fastapi_django_dev
+    build:
+      context: .
+    working_dir: /extension
+    command: cextrun -d --no-rich-logging
+    volumes: 
+      - .:/extension
+    env_file:
+      - .fastapi_django_dev.env
+    depends_on:
+      - db
+
+  fastapi_django_bash:
+    container_name: fastapi_django_bash
+    build:
+      context: .
+    working_dir: /extension
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/extension
+    env_file:
+      - .fastapi_django_dev.env
+    depends_on:
+      - db
+
+  fastapi_django_test:
+    container_name: fastapi_django_test
+    build:
+      context: .
+    working_dir: /extension
+    command: extension-test
+    volumes:
+      - .:/extension
+    env_file:
+      - .fastapi_django_dev.env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12
+    restart: always
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_PASSWORD: 1q2w3e
+      POSTGRES_DB: eaas
